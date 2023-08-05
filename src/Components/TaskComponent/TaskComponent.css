@@ -1,0 +1,26 @@
+.taskComponent {
+	background-color: white;
+	padding: 5px;
+	width: 48%;
+	margin: 20px 0px;
+	border-radius: 4px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.taskComponentCompleted {
+	background-color: #16ff00;
+}
+
+.icon {
+	color: black;
+	cursor: pointer;
+}
+.completedIcon {
+	color: white;
+}
+
+@media screen and (max-width: 900px) {
+	.taskComponent {
+		width: 100%;
+	}
+}

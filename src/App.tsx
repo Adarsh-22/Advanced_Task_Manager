@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import InputField from "./Components/InputField/InputField";
+import React, { useState } from "react";
+import { Task } from "./model";
+import TaskList from "./Components/TaskList/TaskList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = ({}) => {
+	const [task, setTask] = useState<string>("");
+
+	const [allTasks, setAllTasks] = useState<Task[]>([]);
+
+	const handleAddTask = (e: React.FormEvent) => {
+		e.preventDefault();
+		if (task) {
+			setAllTasks([...allTasks, { id: Date.now(), info: task, isDone: false }]);
+			setTask("");
+		}
+	};
+	return (
+		<div className="App">
+			<h1 className="heading">Organizer</h1>
+			<InputField task={task} setTask={setTask} handleAddTask={handleAddTask} />
+
+			<TaskList allTasks={allTasks} setAllTasks={setAllTasks} />
+		</div>
+	);
+};
 
 export default App;
